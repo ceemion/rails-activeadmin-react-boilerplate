@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+if %w(development production).include? Rails.env
+  AdminUser.create!(email: 'admin@kompilab.com', password: 'password', password_confirmation: 'password')
+end
