@@ -55,6 +55,25 @@ Services (job queues, cache servers, search engines, etc.)
 
 Deployment instructions
 
+```bash
+git push heroku master
+```
+
+### Working with ActiveAdmin
+When a new model is added, be sure to tell ActiveAdmin about our new friends.
+For instance, if we scaffold Drink
+
+```bash
+bin/rails g scaffold Drink title:string description:string steps:string source:string
+```
+
+Perform the following which runs migration and tells ActiveAdmin about Drink:
+
+```bash
+$ bin/rake db:migrate
+$ bin/rails generate active_admin:resource Drink
+```
+
 ## Contributing
 * Fork this repository and clone locally.
 * Create an upstream remote and sync your local copy before you branch.
