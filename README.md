@@ -42,7 +42,7 @@ $ bundle exec rake db:seed
 Start the server
 
 ```bash
-$ bin/rails server -p 3001
+$ bin/rake start
 ```
 
 How to run the test suite
