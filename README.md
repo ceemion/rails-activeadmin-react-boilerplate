@@ -18,7 +18,7 @@ A blend of rock-solid CMS and API with the absolute best in front-end tooling, b
 * Node and NPM
 `>= 8.9.4 (npm v5.6.0)`
 
-* React (via Create React App or CRA)
+* React JS (via Create React App or CRA)
 `v16.4.0`
 
 ## Getting Started
@@ -36,6 +36,7 @@ Database creation and initialization
 ```bash
 $ bundle exec rake db:create
 $ bundle exec rake db:migrate
+$ bundle exec rake db:seed
 ```
 
 Start the server
