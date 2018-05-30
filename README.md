@@ -12,11 +12,14 @@ A blend of rock-solid CMS and API with the absolute best in front-end tooling, b
 * Ruby version
 `>= 2.4.1`
 
+* ActiveAdmin
+`v1.3.0`
+
 * Node and NPM
 `>= 8.9.4 (npm v5.6.0)`
 
-* ActiveAdmin
-`v1.3.0`
+* React (via Create React App or CRA)
+`v16.4.0`
 
 ## Getting Started
 
