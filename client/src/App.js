@@ -7,7 +7,9 @@ class App extends Component {
   constructor() {
     super();
 
-    this.state = {};
+    this.state = {
+      color: 'purple'
+    };
 
     this.getDrinks = this.getDrinks.bind(this);
     this.getDrink = this.getDrink.bind(this);
@@ -42,19 +44,56 @@ class App extends Component {
   }
 
   render() {
-    let {drink, drinks} = this.state;
+    let {drink, drinks, color} = this.state;
 
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+    return drinks
+      ?
+      <Container text>
+        <Header as='h2' icon textAlign='center' color={color}>
+          <Icon name='unordered list' circular />
+          <Header.Content>
+            List of Ingredients
+          </Header.Content>
+          <Header.Subheader>
+            Rails ActiveAdmin React Template
+          </Header.Subheader>
+        </Header>
+        <Divider hidden section />
+        {drinks && drinks.length
+          ?
+          <Button.Group color={color} fluid widths={drinks.length}>
+            {Object.keys(drinks).map((key) => {
+              return <Button active={drink && drink.id === drinks[key].id} fluid key={key} onClick={() => this.getDrink(drinks[key].id)}>
+                {drinks[key].title}
+              </Button>
+          })}
+          </Button.Group>
+          :
+          <Container textAlign='center'>No drinks found.</Container>
+        }
+        <Divider section />
+        {drink &&
+          <Container>
+            <Header as='h2'>
+              {drink.title}
+            </Header>
+            {drink.description && <p>{drink.description}</p>}
+            {drink.ingredients &&
+            <Segment.Group>
+              {drink.ingredients.map((ingredient, i) => <Segment key={i}>{ingredient.description}</Segment>)}
+            </Segment.Group>
+            }
+            {drink.steps && <p>{drink.steps}</p>}
+            {drink.source && <Button basic size='tiny' color={color} href={drink.source}>Source</Button>}
+          </Container>
+        }
+      </Container>
+      :
+      <Container text>
+        <Dimmer active inverted>
+          <Loader content="Loading" />
+        </Dimmer>
+      </Container>
   }
 }
 
