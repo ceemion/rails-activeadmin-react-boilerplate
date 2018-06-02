@@ -7,10 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 if %w(development production).include? Rails.env
-  AdminUser.create!(email: 'admin@kompilab.com', password: 'password', password_confirmation: 'password')
+  AdminUser.first_or_create(email: 'admin@kompilab.com', password: 'password', password_confirmation: 'password')
 end
 
-breakfast_smoothie = Drink.create(
+breakfast_smoothie = Drink.first_or_create(
     title: "Two-Minute Breakfast Boost",
     description: "Whizz up a low-fat breakfast smoothie in no time. Use banana with other soft fruit, plus honey for a little sweetness and oats for slow-release fuel.",
     steps: "Put all the ingredients in a blender and whizz for 1 min until smooth. Pour the mixture into two glasses to serve.",
@@ -23,7 +23,7 @@ breakfast_smoothie.ingredients.create(description: "150ml milk")
 breakfast_smoothie.ingredients.create(description: "1 tsp honey")
 breakfast_smoothie.ingredients.create(description: "1 tsp vanilla extract")
 
-kale_smoothie = Drink.create(
+kale_smoothie = Drink.first_or_create(
     title: "Kale And Hearty Smoothie",
     description: "Give yourself a dose of vitamin C in the morning with this vegan green smoothie. Along with kale and avocado, there's a hit of zesty lime and pineapple.",
     steps: "Put all of the ingredients into a bullet or smoothie maker, add a large splash of water and blitz. Add more water until you have the desired consistency.",
