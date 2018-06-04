@@ -59,6 +59,14 @@ Deployment instructions
 git push heroku master
 ```
 
+Deploy to la-ingredients.surge.sh
+```bash
+$ cd client/
+$ npm run build
+$ surge build/ la-ingredients.surge.sh
+```
+Note: this will only deploy the FE static files
+
 ### Working with ActiveAdmin
 When a new model is added, be sure to tell ActiveAdmin about our new friends.
 For instance, if we scaffold Drink
