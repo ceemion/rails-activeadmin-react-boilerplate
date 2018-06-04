@@ -8,6 +8,7 @@ class Home extends Component {
     super();
 
     this.state = {
+      loading: true,
       color: 'purple'
     };
 
@@ -22,7 +23,10 @@ class Home extends Component {
   fetch(endpoint) {
     return window.fetch(endpoint)
       .then(response => response.json())
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error);
+        this.setState({loading: false})
+      });
   }
 
   getDrinks() {
@@ -35,18 +39,20 @@ class Home extends Component {
         else {
           this.setState({drinks: []})
         }
+
+        this.setState({loading: false})
       })
   }
 
   getDrink(id) {
     this.fetch(`/api/drinks/${id}`)
-      .then(drink => this.setState({drink: drink}))
+      .then(drink => this.setState({drink: drink, loading: false}))
   }
 
   render() {
-    let {drink, drinks, color} = this.state;
+    let {loading, drink, drinks, color} = this.state;
 
-    return drinks
+    return !loading && drinks
       ?
       <Container text>
         <Header as='h2' icon textAlign='center' color={color}>
@@ -90,9 +96,22 @@ class Home extends Component {
       </Container>
       :
       <Container text>
-        <Dimmer active inverted>
-          <Loader content="Loading" />
-        </Dimmer>
+        {loading
+          ?
+          <Dimmer active inverted>
+            <Loader content="Loading"/>
+          </Dimmer>
+          :
+          <Header as='h2' icon textAlign='center' color={color}>
+            <Icon name='eye slash outline'/>
+            <Header.Content>
+              List of Ingredients
+            </Header.Content>
+            <Header.Subheader>
+              Rails ActiveAdmin React Template
+            </Header.Subheader>
+          </Header>
+        }
       </Container>
   }
 }
